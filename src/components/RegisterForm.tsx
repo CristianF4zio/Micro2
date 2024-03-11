@@ -1,9 +1,9 @@
+// RegisterForm.tsx
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db as firestore } from './firebase';
 import styles from './RegisterForm.module.css';
-
 
 const RegisterForm: React.FC = () => {
   const [formData, setFormData] = useState({
