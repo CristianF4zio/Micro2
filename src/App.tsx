@@ -1,16 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ClubsList from './components/ClubsList';
+import RegisterForm from './components/RegisterForm';
+import LoginForm from './components/LoginForm';
+import ClubsDetails from './components/ClubsDetails'; // Importa el componente
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
- fsdfsdf
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<RegisterForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/inicio" element={<ClubsList />} />
+        <Route path="/clubes/:clubId" element={<ClubsDetails />} /> {/* Nueva ruta para los detalles del club */}
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

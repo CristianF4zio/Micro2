@@ -1,0 +1,47 @@
+.clubsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    justify-content: center;
+    padding: 20px;
+}
+
+.clubCard {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px; 
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s; 
+    background-color: #000000; 
+    color: #fff; 
+    border: 2px solid #39FF14; 
+}
+
+.clubCard:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 0px 15px #39FF14; 
+    border-color: rgb(0, 0, 0); 
+}
+
+.clubCard h2 {
+    text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
+}
+
+/* Estilos para los botones */
+.clubCard button {
+    color: #fff;
+    background-color: #000000;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s; /* Agregamos text-shadow a la transición */
+}
+
+.clubCard button:hover {
+    background-color: #39FF14;
+    color: #000000;
+    /* Agregamos el mismo efecto de text-shadow al hover */
+    text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
+}
+

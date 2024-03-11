@@ -13,10 +13,10 @@ const firebaseConfig = {
   measurementId: "G-GJK51SR1PE"
 };
 
-// Initialize Firebase
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
-export const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export const auth = getAuth(app);
-export const googleProvider = new GoogleAuthProvider();
-
+export { app, db, auth, googleProvider };

@@ -1,0 +1,89 @@
+.formContainer {
+  position: relative; /* Añadido para posicionar correctamente el pseudo-elemento */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background-color: #000000; /* Cambio del color de fondo */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  width: auto;
+  max-width: 500px; 
+  margin: 2% auto;
+  color: #ffffff; /* Color del texto */
+  text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14; /* Efecto de texto fluorescente */
+}
+
+/* Agregar efecto de borde fluorescente */
+.formContainer::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14; /* Efecto de borde fluorescente */
+  z-index: -1;
+}
+
+/* Resto de estilos */
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.95);
+  border-radius: 10px;
+  width: auto;
+  max-width: 500px; 
+  color: #ffffff;
+  text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px; 
+  width: 100%;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 8px;
+}
+
+.formInput {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  color: #000000;
+}
+
+.submitButton {
+  grid-column: span 2;
+  padding: 12px 0;
+  background-color: #000000;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
+}
+
+.switchFormText, .switchFormLinkContainer {
+  margin-top: 20px;
+  grid-column: span 2;
+}
+
+.errorMessage {
+  color: white;
+  text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
+}
