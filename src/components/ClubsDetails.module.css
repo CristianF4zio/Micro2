@@ -47,3 +47,23 @@
     text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14; /* Efecto fluorescente en los títulos */
   }
   
+  .clubsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    justify-content: center;
+    padding: 20px;
+}
+
+.clubCard {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%; /* Cambio el ancho a 100% para adaptarse al contenedor */
+    max-width: 300px; /* Agregamos un ancho máximo para mantener la legibilidad */
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s; 
+    background-color: #000000; 
+    color: #fff; 
+    border: 2px solid #39FF14; 
+}

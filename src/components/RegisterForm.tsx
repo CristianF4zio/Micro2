@@ -4,7 +4,6 @@ import { collection, addDoc } from 'firebase/firestore';
 import { db as firestore } from './firebase';
 import styles from './RegisterForm.module.css';
 
-
 const RegisterForm: React.FC = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -24,9 +23,9 @@ const RegisterForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormSubmitted(true); // Indica que el formulario ha sido enviado
+    setFormSubmitted(true);
 
     try {
       if (!formData.firstName || !formData.lastName || !formData.username || !formData.email || !formData.password || !formData.favoriteGame) {
@@ -34,10 +33,10 @@ const RegisterForm: React.FC = () => {
       }
 
       const usersCollectionRef = collection(firestore, 'users');
-      await addDoc(usersCollectionRef, formData); // Guardar los datos del usuario en Firestore
+      await addDoc(usersCollectionRef, formData);
       console.log("Usuario registrado correctamente");
       setRedirect(true);
-    } catch (error: unknown) {
+    } catch (error) {
       if (error instanceof Error) {
         console.error("Error al registrar usuario:", error.message);
       } else {

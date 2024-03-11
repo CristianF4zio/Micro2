@@ -1,9 +1,9 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db as firestore } from './firebase';
+import { db as firestore } from './firebase'; // Asegúrate de importar firestore desde './firebase'
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'; // Importa getAuth, signInWithPopup y GoogleAuthProvider desde 'firebase/auth'
 import styles from './LoginForm.module.css';
-
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
@@ -40,13 +40,21 @@ const LoginForm: React.FC = () => {
         throw new Error('Credenciales incorrectas.');
       }
     } catch (error) {
-      if (error instanceof Error) {
-        console.error("Error al iniciar sesión:", error.message);
-        setErrorMessage(error.message);
-      } else {
-        console.error("Se produjo un error desconocido");
-        setErrorMessage('Se produjo un error desconocido');
-      }
+      console.error("Error al iniciar sesión:", error);
+      setErrorMessage('Se produjo un error al iniciar sesión.');
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const auth = getAuth(); // Obtenemos el objeto auth
+      const provider = new GoogleAuthProvider(); // Creamos un proveedor de Google
+      await signInWithPopup(auth, provider); // Iniciamos sesión con el proveedor de Google
+      console.log("Inicio de sesión exitoso con Google");
+      navigate('/inicio');
+    } catch (error) {
+      console.error("Error al iniciar sesión con Google:", error);
+      setErrorMessage('Se produjo un error al iniciar sesión con Google.');
     }
   };
 
@@ -65,6 +73,7 @@ const LoginForm: React.FC = () => {
         </div>
         <button type="submit" className={styles.submitButton}>Iniciar Sesión</button>
       </form>
+      <button onClick={handleGoogleSignIn} className={styles.submitButton}>Inicia sesión con Google</button>
       <div className={styles.switchFormLinkContainer}>
         ¿No tienes una cuenta? <Link to="/" className={styles.switchFormLink}>Regístrate</Link>
       </div>
