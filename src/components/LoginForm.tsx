@@ -1,12 +1,13 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db as firestore } from './firebase'; // Asegúrate de importar firestore desde './firebase'
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'; // Importa getAuth, signInWithPopup y GoogleAuthProvider desde 'firebase/auth'
+import { db as firestore } from './firebase';
 import styles from './LoginForm.module.css';
+
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
+  const { setUser } = useUser();
   const [formData, setFormData] = useState({ username: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -34,6 +35,16 @@ const LoginForm: React.FC = () => {
       const querySnapshot = await getDocs(q);
       
       if (!querySnapshot.empty) {
+        const userDoc = querySnapshot.docs[0].data();
+        const loggedInUser: User = {
+          id: userDoc.id,
+          username: userDoc.username,
+          firstName: userDoc.firstName,
+          favoriteGame: userDoc.favoriteGame,
+          email: userDoc.email,
+        };
+        setUser(loggedInUser);
+
         console.log("Inicio de sesión exitoso");
         navigate('/inicio');
       } else {

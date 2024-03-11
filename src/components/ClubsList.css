@@ -1,47 +1,48 @@
+/* Estilos para los contenedores de los clubes */
 .clubsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; 
-    justify-content: center;
-    padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
 }
 
+/* Estilos para las tarjetas de clubes */
 .clubCard {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    width: 300px; 
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s; 
-    background-color: #000000; 
-    color: #fff; 
-    border: 2px solid #39FF14; 
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; /* Agregamos border-color a la transición */
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #39FF14; /* Añadimos un borde sólido de 2px */
+  width: 300px;
 }
 
 .clubCard:hover {
-    transform: scale(1.05); 
-    box-shadow: 0px 0px 15px #39FF14; 
-    border-color: rgb(0, 0, 0); 
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px #39FF14;
+  border-color: #000000; /* Cambiamos el color del borde al negro */
 }
 
+/* Estilos para los títulos dentro de las tarjetas de clubes */
 .clubCard h2 {
-    text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
+  text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14; /* Efecto fluorescente en los títulos */
 }
 
-/* Estilos para los botones */
+/* Estilos para los botones dentro de las tarjetas de clubes */
 .clubCard button {
-    color: #fff;
-    background-color: #000000;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s; /* Agregamos text-shadow a la transición */
+  color: #fff;
+  background-color: #000000;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s; /* Agregamos text-shadow a la transición */
 }
 
 .clubCard button:hover {
-    background-color: #39FF14;
-    color: #000000;
-    /* Agregamos el mismo efecto de text-shadow al hover */
-    text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
+  background-color: #39FF14;
+  color: #000000;
+  /* Agregamos el mismo efecto de text-shadow al hover */
+  text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
 }
-
