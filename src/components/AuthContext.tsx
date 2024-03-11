@@ -1,5 +1,5 @@
 import React, { createContext, useContext, ReactNode, useEffect, useState } from 'react';
-import { auth } from './firebase'; // Asegúrate de que este es el camino correcto para tu archivo firebase config
+import { auth } from './firebase'; 
 import { onAuthStateChanged, User } from 'firebase/auth';
 
 interface AuthContextType {
