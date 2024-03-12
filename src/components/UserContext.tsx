@@ -2,14 +2,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import User from './User';
 
-// interface User {
-//     id: string;
-//     username: string;
-//     firstName: string;
-//     favoriteGame: string;
-//     email: string;
-//   }
-
 interface UserContextType {
   user: User | null;
   setUser: (user: User | null) => void;

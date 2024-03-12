@@ -44,6 +44,7 @@ const LoginForm: React.FC = () => {
           firstName: userDoc.firstName,
           favoriteGame: userDoc.favoriteGame,
           email: userDoc.email,
+          lastName: userDoc.lastName
         };
         setUser(loggedInUser);
 

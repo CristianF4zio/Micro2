@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ClubsList.css';
+import { useUser } from './UserContext';
 
 interface Club {
   ID: string;
@@ -151,6 +152,8 @@ const videojuegosData: { [key: string]: {titulo: string, genero: string, descrip
 
 const ClubsList = () => {
   const navigate = useNavigate();
+  const { user } = useUser();
+
   const [clubStates, setClubStates] = useState<boolean[]>(() => {
     const storedStates = localStorage.getItem('clubStates');
     return storedStates ? JSON.parse(storedStates) : clubsData.map(() => false);
@@ -215,6 +218,26 @@ const ClubsList = () => {
           onChange={e => setSearchTerm(e.target.value)}
         />
       </div>
+      {user && (
+        <button 
+          onClick={() => navigate('/profile')}
+          style={{
+            cursor: 'pointer',
+            position: 'absolute', // Puedes ajustar la posición según necesites
+            top: '20px',
+            right: '20px',
+            borderRadius: '50%',
+            width: '40px', // Ajusta el tamaño según necesites
+            height: '40px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '20px', // Ajusta el tamaño del ícono/texto según necesites
+          }}
+        >
+          {user.firstName.charAt(0).toUpperCase()} 
+        </button>
+      )}
       {!searchTerm && (
         <div className="clubsContainer">
           {searchResultsClubs.map((club, index) => (
@@ -256,5 +279,6 @@ const ClubsList = () => {
     </div>
   );
 };
+
 
 export default ClubsList;
