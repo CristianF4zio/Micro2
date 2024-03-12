@@ -1,4 +1,3 @@
-// RegisterForm.tsx
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
@@ -17,7 +16,7 @@ const RegisterForm: React.FC = () => {
   const [redirect, setRedirect] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -27,12 +26,12 @@ const RegisterForm: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setFormSubmitted(true); // Indica que el formulario ha sido enviado
-
+  
     try {
       if (!formData.firstName || !formData.lastName || !formData.username || !formData.email || !formData.password || !formData.favoriteGame) {
         throw new Error('Por favor, complete todos los campos.');
       }
-
+  
       const usersCollectionRef = collection(db, 'users');
       await addDoc(usersCollectionRef, formData); // Guardar los datos del usuario en Firestore
       console.log("Usuario registrado correctamente");
@@ -44,11 +43,35 @@ const RegisterForm: React.FC = () => {
         console.error("Se produjo un error desconocido");
       }
     }
-  };
+  };  
 
   if (redirect) {
     return <Navigate to="/login" />;
   }
+
+  // Lista de 20 juegos
+  const gamesList = [
+    'Minecraft',
+    'Fortnite',
+    'League of Legends',
+    'Call of Duty',
+    'FIFA',
+    'Among Us',
+    'GTA V',
+    'Apex Legends',
+    'Overwatch',
+    'Rocket League',
+    'Valorant',
+    'The Witcher 3',
+    'Assassin\'s Creed',
+    'Destiny 2',
+    'Rainbow Six Siege',
+    'World of Warcraft',
+    'Cyberpunk 2077',
+    'Animal Crossing',
+    'Super Smash Bros',
+    'Red Dead Redemption 2'
+  ];
 
   return (
     <div className={styles.formContainer}>
@@ -77,7 +100,12 @@ const RegisterForm: React.FC = () => {
         </div>
         <div className={styles.formField}>
           <label htmlFor="favoriteGame" className={styles.label}>Videojuego Preferido</label>
-          <input type="text" name="favoriteGame" id="favoriteGame" value={formData.favoriteGame} onChange={handleChange} className={styles.formInput} />
+          <select name="favoriteGame" id="favoriteGame" value={formData.favoriteGame} onChange={handleChange} className={styles.formInput}>
+            <option value="">Seleccione un juego</option>
+            {gamesList.map((game, index) => (
+              <option key={index} value={game}>{game}</option>
+            ))}
+          </select>
         </div>
         <button type="submit" className={styles.submitButton}>Registrar</button>
       </form>

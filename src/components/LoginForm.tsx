@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db as firestore } from './firebase.js';
 import { useUser } from './UserContext';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import styles from './LoginForm.module.css';
 import User from './User';
 
@@ -61,6 +62,20 @@ const LoginForm: React.FC = () => {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      // El usuario ha iniciado sesión correctamente con Google.
+      // Puedes redirigirlo a la página de inicio o realizar otras acciones necesarias.
+      navigate('/inicio');
+    } catch (error) {
+      console.error('Error al iniciar sesión con Google:', error);
+      // Maneja el error según sea necesario.
+    }
+  };
+
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.formTitle}>Iniciar Sesión</h2>
@@ -76,6 +91,9 @@ const LoginForm: React.FC = () => {
         </div>
         <button type="submit" className={styles.submitButton}>Iniciar Sesión</button>
       </form>
+      <button type="button" onClick={handleGoogleLogin} className={styles.googleButton}>
+        Iniciar Sesión con Google
+      </button>
       <div className={styles.switchFormLinkContainer}>
         ¿No tienes una cuenta? <Link to="/" className={styles.switchFormLink}>Regístrate</Link>
       </div>

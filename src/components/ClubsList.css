@@ -2,47 +2,137 @@
 .clubsContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 20px; 
   justify-content: center;
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Estilos para las tarjetas de clubes */
 .clubCard {
+  border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
+  width: 300px; 
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; /* Agregamos border-color a la transición */
-  background-color: #000000;
-  color: #ffffff;
-  border: 2px solid #39FF14; /* Añadimos un borde sólido de 2px */
-  width: 300px;
+  transition: transform 0.2s, box-shadow 0.2s; 
+  background-color: #000000; 
+  color: #fff; 
+  border: 2px solid #39FF14; 
 }
 
 .clubCard:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 0px 15px #39FF14;
-  border-color: #000000; /* Cambiamos el color del borde al negro */
+  transform: scale(1.05); 
+  box-shadow: 0px 0px 15px #39FF14; 
+  border-color: rgb(0, 0, 0); 
 }
 
-/* Estilos para los títulos dentro de las tarjetas de clubes */
 .clubCard h2 {
-  text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14; /* Efecto fluorescente en los títulos */
+  text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
 }
 
-/* Estilos para los botones dentro de las tarjetas de clubes */
+/* Estilos para los botones */
 .clubCard button {
   color: #fff;
   background-color: #000000;
   border: none;
   padding: 8px 16px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s; /* Agregamos text-shadow a la transición */
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s;
 }
 
 .clubCard button:hover {
   background-color: #39FF14;
   color: #000000;
-  /* Agregamos el mismo efecto de text-shadow al hover */
   text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
+}
+
+/* Estilos para la barra de búsqueda */
+.searchBar {
+  text-align: center;
+  margin-top: 20px;
+  background-color: #121212;
+  border-radius: 8px;
+  padding: 4px 8px;
+  border: 2px solid #39FF14;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.searchBar input {
+  padding: 2px;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  color: #ffffff;
+  outline: none;
+}
+
+.searchBar input::placeholder {
+  color: #cccccc;
+}
+
+.clubsListContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.searchBar {
+  margin-bottom: 20px;
+}
+
+.gamesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.gameCard {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #000000;
+  color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.gameCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px #39FF14;
+}
+
+.gameCard h2 {
+  margin-top: 0;
+}
+
+/* Estilos para las tarjetas de juegos */
+.gameCard {
+  border: 2px solid #39FF14; /* Cambiar el borde a una línea verde */
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #000000;
+  color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.gameCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px #39FF14;
+}
+
+.gameCard h2 {
+  margin-top: 0;
+  text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
+  /* Agregar el efecto fluorescente verde al texto */
 }
