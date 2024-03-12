@@ -1,0 +1,48 @@
+.profileContainer {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #000; /* Fondo negro */
+    color: rgb(255, 255, 255); /* Letras verdes */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Sombra suave para un efecto neón */
+  }
+  
+  .infoSection.neonText {
+    margin-bottom: 15px;
+    color: #0F0; /* Verde neón para la información */
+    text-shadow: 0 0 5px #0F0, 0 0 10px #0F0; /* Efecto neón para el texto */
+  }
+  
+  input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #222; /* Fondo oscuro para los campos de entrada */
+    color: rgb(255, 255, 255); /* Texto en verde */
+  }
+  
+  button {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #000000; /* Azul por defecto para los botones */
+    color: rgb(9, 255, 0);
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #12af34;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    margin-top: 20px; /* Ajusta al gusto para dar espacio sobre los botones */
+  }
+  

@@ -1,0 +1,18 @@
+.userPanel {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profileIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+    margin-right: 10px;
+  }
+  

@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from './firebase'; 
+import { collection, query, where, getDocs, addDoc } from 'firebase/firestore';
+import { db as firestore } from './firebase';
 import styles from './RegisterForm.module.css';
 
 const RegisterForm: React.FC = () => {
@@ -15,12 +15,20 @@ const RegisterForm: React.FC = () => {
   });
   const [redirect, setRedirect] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [usernameExists, setUsernameExists] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const checkUsernameExists = async (username: string) => {
+    const usersRef = collection(firestore, 'users');
+    const q = query(usersRef, where("username", "==", username));
+    const querySnapshot = await getDocs(q);
+    return !querySnapshot.empty; // Retorna true si el nombre de usuario ya existe
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -31,8 +39,15 @@ const RegisterForm: React.FC = () => {
       if (!formData.firstName || !formData.lastName || !formData.username || !formData.email || !formData.password || !formData.favoriteGame) {
         throw new Error('Por favor, complete todos los campos.');
       }
-  
-      const usersCollectionRef = collection(db, 'users');
+
+      // Verifica si el nombre de usuario ya existe
+      const usernameAlreadyExists = await checkUsernameExists(formData.username);
+      if (usernameAlreadyExists) {
+        setUsernameExists(true);
+        throw new Error('El nombre de usuario ya está en uso. Por favor, elija otro.');
+      }
+
+      const usersCollectionRef = collection(firestore, 'users');
       await addDoc(usersCollectionRef, formData); // Guardar los datos del usuario en Firestore
       console.log("Usuario registrado correctamente");
       setRedirect(true);
@@ -76,7 +91,8 @@ const RegisterForm: React.FC = () => {
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.formTitle}>Registrar Usuario</h2>
-      {(formSubmitted && (!formData.firstName || !formData.lastName || !formData.username || !formData.email || !formData.password || !formData.favoriteGame)) && <p className={`formMessage ${styles.formMessage}`}>Por favor, llene todos los campos.</p>}
+      {formSubmitted && usernameExists && <p className={styles.formMessage}>El nombre de usuario ya está en uso. Por favor, elija otro.</p>}
+      {(formSubmitted && (!formData.firstName || !formData.lastName || !formData.username || !formData.email || !formData.password || !formData.favoriteGame)) && <p className={styles.formMessage}>Por favor, llene todos los campos.</p>}
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formField}>
           <label htmlFor="firstName" className={styles.label}>Nombre</label>
@@ -89,6 +105,7 @@ const RegisterForm: React.FC = () => {
         <div className={styles.formField}>
           <label htmlFor="username" className={styles.label}>Nombre de Usuario</label>
           <input type="text" name="username" id="username" value={formData.username} onChange={handleChange} className={styles.formInput} />
+          {formSubmitted && usernameExists && <p className={styles.error}>Este nombre de usuario ya está en uso.</p>}
         </div>
         <div className={styles.formField}>
           <label htmlFor="email" className={styles.label}>Correo Electrónico</label>
@@ -112,6 +129,7 @@ const RegisterForm: React.FC = () => {
       <p className={styles.switchFormText}>¿Ya tienes una cuenta? <Link to="/login" className={styles.switchFormLink}>Inicia sesión</Link></p>
     </div>
   );
+  
 };
 
 export default RegisterForm;
