@@ -66,27 +66,27 @@ const RegisterForm: React.FC = () => {
 
   // Lista de 20 juegos
   const gamesList = [
-    'Minecraft',
-    'Fortnite',
-    'League of Legends',
-    'Call of Duty',
-    'FIFA',
-    'Among Us',
-    'GTA V',
-    'Apex Legends',
-    'Overwatch',
-    'Rocket League',
-    'Valorant',
-    'The Witcher 3',
-    'Assassin\'s Creed',
-    'Destiny 2',
-    'Rainbow Six Siege',
-    'World of Warcraft',
-    'Cyberpunk 2077',
-    'Animal Crossing',
-    'Super Smash Bros',
-    'Red Dead Redemption 2'
-  ];
+    "The Witcher 3: Wild Hunt",
+    "Red Dead Redemption 2",
+    "The Legend of Zelda: Breath of the Wild",
+    "Dark Souls III",
+    "Super Mario Odyssey",
+    "Overwatch",
+    "Minecraft",
+    "Fortnite",
+    "FIFA 22",
+    "Call of Duty: Warzone",
+    "Assassin's Creed Valhalla",
+    "Cyberpunk 2077",
+    "Among Us",
+    "Animal Crossing: New Horizons",
+    "League of Legends",
+    "Genshin Impact",
+    "Apex Legends",
+    "World of Warcraft",
+    "Control",
+    "Hades"
+  ];  
 
   return (
     <div className={styles.formContainer}>
